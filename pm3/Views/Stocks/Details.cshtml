@@ -16,7 +16,7 @@
     @foreach (var portfolio in Model.Portfolios)
     {
 
-        <a href="/Portfolio/Details/@portfolio.PortfolioID">@portfolio.PortfolioName </a> <a style="color:#ab2020;" href="/Stock/Unassociate/@Model.SelectedStock.StocksID?PortfolioID=@portfolio.PortfolioID">[x]</a><br />
+        <a href="/Portfolios/Details/@portfolio.PortfolioID">@portfolio.PortfolioName </a> <a style="color:#ab2020;" href="/Stock/Unassociate/@Model.SelectedStock.StocksID?PortfolioID=@portfolio.PortfolioID">[x]</a><br />
     }
 
     <div>

@@ -1,0 +1,16 @@
+﻿﻿@model IEnumerable<pm3.Models.StockDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<a href="/Stocks/New">New Stock</a>
+@foreach (var stock in Model)
+{
+    <h2><a href="/Stocks/Details/@stock.StocksID">@stock.StockName</a></h2>
+    <div>weight: @stock.StockBuyPrice CAD</div>
+   
+    
+
+
+}

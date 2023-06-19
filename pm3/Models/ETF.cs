@@ -19,4 +19,18 @@ namespace pm3.Models
         public ICollection<Portfolio> Portfolios { get; set; }  
 
     }
+
+    public class ETFDto
+    {
+        public int ETFID { get; set; }
+        public string ETFName { get; set; }
+        public int ETFBuyPrice { get; set; }
+
+        public int ETFSellPrice { get; set; }
+
+        public int ETFQty { get; set; }
+
+
+
+    }
 }

@@ -19,4 +19,15 @@ namespace pm3.Models
 
 
     }
+
+    public class PortfolioDto
+    {
+        public int PortfolioID { get; set; }
+        public string PortfolioName { get; set; }
+
+        public string Risk { get; set; }
+
+
+    }
+
 }

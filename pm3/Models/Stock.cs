@@ -25,4 +25,22 @@ namespace pm3.Models
 
 
     }
+
+    public class StockDto
+    {
+        public int StocksID { get; set; }
+
+        public string StockName { get; set; }
+
+        public int StockBuyPrice { get; set; }
+
+        public int StockSellPrice { get; set; }
+
+        public int StockQty { get; set; }
+
+
+
+    }
+
+
 }

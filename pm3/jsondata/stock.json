@@ -1,0 +1,7 @@
+﻿{
+  "StocksID": 3,
+  "StockName": "NETFLIX",
+    "StockBuyPrice": 200,
+  "StockSellPrice": 201,
+  "StockQty ": 10
+}

@@ -42,8 +42,8 @@ namespace pm3.Controllers
         // GET: Stocks/List
         public ActionResult List()
         {
-            //objective: communicate with our animal data api to retrieve a list of Stock
-            //curl https://localhost:44324/api/animaldata/listStock
+            //objective: communicate with our Stock data api to retrieve a list of Stock
+            //curl https://localhost:44324/api/Stockdata/listStock
 
 
             string url = "StockData/ListStocks";
@@ -65,8 +65,8 @@ namespace pm3.Controllers
         {
             DetailsStock ViewModel = new DetailsStock();
 
-            //objective: communicate with our animal data api to retrieve one animal
-            //curl https://localhost:44324/api/animaldata/findanimal/{id}
+            //objective: communicate with our Stock data api to retrieve one Stock
+            //curl https://localhost:44324/api/Stockdata/findStock/{id}
 
             string url = "Stockdata/FindStock/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -75,12 +75,12 @@ namespace pm3.Controllers
             Debug.WriteLine(response.StatusCode);
 
             StockDto SelectedStock = response.Content.ReadAsAsync<StockDto>().Result;
-            Debug.WriteLine("animal received : ");
+            Debug.WriteLine("Stock received : ");
             Debug.WriteLine(SelectedStock.StockName);
 
             ViewModel.SelectedStock = SelectedStock;
 
-            //show associated keepers with this animal
+            //show associated keepers with this Stock
             url = "Portfoliodata/ListPortfoliosFortheStock/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<PortfolioDto> Portfolios = response.Content.ReadAsAsync<IEnumerable<PortfolioDto>>().Result;
@@ -102,9 +102,9 @@ namespace pm3.Controllers
         [HttpPost]
         public ActionResult Associate(int id, int PortfolioID)
         {
-          //  Debug.WriteLine("Attempting to associate animal :" + id + " with keeper " + KeeperID);
+          //  Debug.WriteLine("Attempting to associate Stock :" + id + " with keeper " + KeeperID);
 
-            //call our api to associate animal with keeper
+            //call our api to associate Stock with keeper
             string url = "Stockdata/AssociateStockWithPortfolio/" + id + "/" + PortfolioID;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
@@ -114,13 +114,13 @@ namespace pm3.Controllers
         }
 
 
-        //Get: Animal/UnAssociate/{id}?KeeperID={keeperID}
+        //Get: Stock/UnAssociate/{id}?KeeperID={keeperID}
         [HttpGet]
         public ActionResult UnAssociate(int id, int PortfolioID)
         {
-           // Debug.WriteLine("Attempting to unassociate animal :" + id + " with keeper: " + KeeperID);
+           // Debug.WriteLine("Attempting to unassociate Stock :" + id + " with keeper: " + KeeperID);
 
-            //call our api to associate animal with keeper
+            //call our api to associate Stock with keeper
             string url = "Stockdata/UnAssociateStockWithPortfolio/" + id + "/" + PortfolioID;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
@@ -130,14 +130,14 @@ namespace pm3.Controllers
         }
 
 
-        // POST: Animal/Create
+        // POST: Stock/Create
         [HttpPost]
         public ActionResult Create(Stock stock)
         {
            // Debug.WriteLine("the json payload is :");
-            //Debug.WriteLine(animal.AnimalName);
-            //objective: add a new animal into our system using the API
-            //curl -H "Content-Type:application/json" -d @animal.json https://localhost:44324/api/animaldata/addanimal 
+            //Debug.WriteLine(Stock.StockName);
+            //objective: add a new Stock into our system using the API
+            //curl -H "Content-Type:application/json" -d @Stock.json https://localhost:44324/api/Stockdata/addStock 
             string url = "Stockdata/AddStock";
 
 
@@ -161,20 +161,20 @@ namespace pm3.Controllers
         }
 
 
-        // GET: Animal/Edit/5
+        // GET: Stock/Edit/5
         public ActionResult Edit(int id)
         {
             UpdateStock ViewModel = new UpdateStock();
 
-            //the existing animal information
+            //the existing Stock information
             string url = "Stockdata/FindStock/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             StockDto SelectedStock = response.Content.ReadAsAsync<StockDto>().Result;
             ViewModel.SelectedStock = SelectedStock;
 
             /*
-            // all species to choose from when updating this animal
-            //the existing animal information
+            // all species to choose from when updating this Stock
+            //the existing Stock information
 
             url = "speciesdata/listspecies/";
             response = client.GetAsync(url).Result;
@@ -187,7 +187,7 @@ namespace pm3.Controllers
         }
 
 
-        // POST: Animal/Update/5
+        // POST: Stock/Update/5
         [HttpPost]
         public ActionResult Update(int id, Stock stock)
         {

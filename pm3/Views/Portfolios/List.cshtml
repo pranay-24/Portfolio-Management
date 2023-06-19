@@ -7,5 +7,5 @@
 <a href="/Portfolios/New">New Portfolio</a>
 @foreach (var Portfolio in Model)
 {
-    <h2><a href="/Portfolios/Details/@Portfolio.PortfolioID">@Portfolio.PortfolioName</a></h2>
+    <h2><a href="/Portfolios/Details/@Portfolio.PortfolioID">@Portfolio.PortfolioName  @Portfolio.Risk</a></h2>
 }
